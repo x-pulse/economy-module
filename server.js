@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 const fs = require('fs');
 const moment = require('moment');
 
-let prefix = 'mina';
+
 
 // JSON file
 let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
@@ -13,12 +13,15 @@ let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
 bot.on('message', message => {
 
   // variable 
+  let prefix = 'mina';
   let sender = message.author;
   let args = message.content.slice(prefix.length).trim().split(" ");
   let command = args.shift().toUpperCase();
   if (bot.user.id === message.author.id) { return } 
   
   // Event
+  if (message.author.bot) return:
+  if (!message.content.startsWith(prefix)) return:
   if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
   if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 1000;
   if (!userData[sender.id + message.guild.id].username) userData[sender.id + message.guild.id].username = message.author.username;
