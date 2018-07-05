@@ -20,8 +20,8 @@ bot.on('message', message => {
   if (bot.user.id === message.author.id) { return } 
   
   // Event
-  if (message.author.bot) return:
-  if (!message.content.startsWith(prefix)) return:
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
   if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
   if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 1000;
   if (!userData[sender.id + message.guild.id].username) userData[sender.id + message.guild.id].username = message.author.username;
