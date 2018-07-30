@@ -33,22 +33,6 @@ bot.on('message', message => {
   
     // command 
   if (command == "MONEY" || command == "BALANCE") {
-    if(sender) {
-    message.channel.send({embed:{
-      title: "💸Bank", 
-      color: 0xF1C40F, 
-      fields:[{
-          name:"Пользователь", 
-          value:user.username, 
-          inline:true
-      }, 
-      {
-      name:"Баланс", 
-      value:userData[user.id + message.guild.id].money,
-      inline:true
-      }] 
-      }}) 
-   } 
     message.channel.send({embed:{
       title: "💸Bank", 
       color: 0xF1C40F, 
@@ -78,7 +62,7 @@ bot.on('message', message => {
     message.channel.send({embed:{
       title:"Daily", 
       color: 0xF1C40F,
-      description:"Вы уже получали свою награду, следущая награда через  **" + moment().endOf('day').fromNow() + '**.' 
+      description:"Вы уже получали свою награду, следущая награда  **" + moment().endOf('day').fromNow() + '**.' 
     }})
   }
 }
