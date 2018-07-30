@@ -48,7 +48,7 @@ bot.on('message', message => {
       }] 
       }}) 
    } 
-  if (command == "ADDMONEY") && (sender.id === '441667160025333762') {
+  if (command == "ADDMONEY", sender.id === '441667160025333762') {
   userData[user.id + message.guild.id].money += args[1];
   }
   if (command == "DAILY") {
