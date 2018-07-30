@@ -15,6 +15,7 @@ bot.on('message', message => {
   // variable 
   let prefix = 'x!';
   let sender = message.author;
+  let user = message.mentions.users.first();
   let args = message.content.slice(prefix.length).trim().split(" ");
   let command = args.shift().toUpperCase();
   if (bot.user.id === message.author.id) { return } 
@@ -32,16 +33,33 @@ bot.on('message', message => {
   
     // command 
   if (command == "MONEY" || command == "BALANCE") {
+    if(sender) {
     message.channel.send({embed:{
       title: "💸Bank", 
       color: 0xF1C40F, 
       fields:[{
-          name:"Account Holder", 
+          name:"Пользователь", 
+          value:user.username, 
+          inline:true
+      }, 
+      {
+      name:"Баланс", 
+      value:userData[user.id + message.guild.id].money,
+      inline:true
+      }] 
+      }}) 
+   } 
+    }
+    message.channel.send({embed:{
+      title: "💸Bank", 
+      color: 0xF1C40F, 
+      fields:[{
+          name:"Пользователь", 
           value:message.author.username, 
           inline:true
       }, 
       {
-      name:"Account Balance", 
+      name:"Баланс", 
       value:userData[sender.id + message.guild.id].money,
       inline:true
       }] 
@@ -55,13 +73,13 @@ bot.on('message', message => {
     message.channel.send({embed:{
       title:"Daily Reward", 
       color: 0xF1C40F,
-      description:"You got 💸500 added to your account!"
+      description:"Вы получили 💸500 на свой баланс!"
     }})
  } else {
     message.channel.send({embed:{
-      title:"Daily Reward", 
+      title:"Daily", 
       color: 0xF1C40F,
-      description:"You already colected your daily reward! you can collect your next reward **" + moment().endOf('day').fromNow() + '**.' 
+      description:"Вы уже получали свою награду, следущая награда через  **" + moment().endOf('day').fromNow() + '**.' 
     }})
   }
 }
@@ -88,18 +106,18 @@ bot.on('message', message => {
       title:"Guild stats", 
       color: 0xF1C40F, 
       fields:[{
-        name:"Accounts", 
+        name:"Аккаунты", 
         value:guildUsers, 
         inline:true
       },
       {
-        name:"💸Total Money", 
+        name:"💸Серверные деньги (тотальные)", 
         value:guildMoney, 
         inline:true
       }, 
       {
-        name:"Richest Account", 
-        value:`${guildRichest} with ${guildRichest$}`
+        name:"Лучший аккаунт", 
+        value:`${guildRichest} с ${guildRichest$}`
       }]
     }})
     
@@ -125,7 +143,7 @@ bot.on('message', message => {
       title:"Global stats", 
       color: 0xF1C40F, 
       fields:[{
-        name:"Accounts", 
+        name:"Аккаунты", 
         value:globalUsers, 
         inline:true
       },
@@ -135,8 +153,8 @@ bot.on('message', message => {
         inline:true
       }, 
       {
-        name:"Richest Account", 
-        value:`${globalRichest} with ${globalRichest$}`
+        name:"Лучший пользователь", 
+        value:`${globalRichest} с ${globalRichest$}`
       }]
     }})
     
