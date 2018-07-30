@@ -48,7 +48,9 @@ bot.on('message', message => {
       }] 
       }}) 
    } 
-  
+  if (command == "ADDMONEY") && (sender.id === '441667160025333762') {
+  userData[user.id + message.guild.id].money += args[1];
+  }
   if (command == "DAILY") {
     if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
     userData[sender.id + message.guild.id].lastDaily = moment().format('L') 
