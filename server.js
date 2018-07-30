@@ -13,7 +13,7 @@ let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
 bot.on('message', message => {
 
   // variable 
-  let prefix = 'mina';
+  let prefix = 'x!';
   let sender = message.author;
   let args = message.content.slice(prefix.length).trim().split(" ");
   let command = args.shift().toUpperCase();
