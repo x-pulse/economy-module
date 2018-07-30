@@ -49,7 +49,6 @@ bot.on('message', message => {
       }] 
       }}) 
    } 
-    }
     message.channel.send({embed:{
       title: "💸Bank", 
       color: 0xF1C40F, 
